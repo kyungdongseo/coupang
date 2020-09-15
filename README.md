@@ -56,5 +56,6 @@ coupang
     - 교환상품 송장 업로드 처리
 7. 검색
     - 상품검색   
+
 쿠팡 오픈 API에 관한 자세한 내용은 아래 주소에서 확인하실 수 있습니다.   
 [쿠팡 오픈 API 공식문서](https://developers.coupang.com/hc/ko)
