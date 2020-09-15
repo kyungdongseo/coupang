@@ -7,7 +7,6 @@ import ssl
 import json
 from functools import wraps
 from inspect import signature
-import coupang_settings
 
 
 try:
