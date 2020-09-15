@@ -7,7 +7,21 @@ import ssl
 import json
 from functools import wraps
 from inspect import signature
-from coupang import settings
+import coupang_settings
+
+
+try:
+    import coupang_settings
+except ModuleNotFoundError:
+    print('api 관한 정보가 필요합니다')
+    print('coupang_settings.py 파일을 생성후')
+    print('경계선 아래의 내용을 입력하십시오')
+    print('='*30+'경계선'+'='*30)
+    print("SECRETKEY = 'Enter your secret key here'")
+    print("ACCESSKEY = 'Enter your access key here'")
+    print("VENDOR_ID = 'Enter your vendor id here(Axxxxxxxx)'")
+    print("USER_ID = 'Enter your user id here(Coupang Wing login ID)'")
+    quit()
 
 
 ##############################################################################
@@ -26,7 +40,7 @@ def vendor_id(f):
             if len(args) < len(keys):
                 position = list(keys).index(key)
                 args_list = list(args)
-                args_list.insert(position, settings.VENDOR_ID)
+                args_list.insert(position, coupang_settings.VENDOR_ID)
                 args = tuple(args_list)
 
         return f(*args, **kwargs)
@@ -37,8 +51,8 @@ def vendor_id(f):
 def coupang(f):
     @wraps(f)
     def decorated(*args, **kwargs):
-        secretkey = settings.SECRETKEY
-        accesskey = settings.ACCESSKEY
+        secretkey = coupang_settings.SECRETKEY
+        accesskey = coupang_settings.ACCESSKEY
 
         data = f(*args, **kwargs)
         if data.get('method') == 'PUT':
