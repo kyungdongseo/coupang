@@ -77,13 +77,14 @@ VENDOR_ID = 'VendorId'
 ```
 4. 파이썬 쉘에서 테스트 해보기
 ```python
+MacBook-Pro:~/kyungdongseo$ cat >> coupang_settings.py << EOF 
+> SECRETKEY = '비밀키'
+> ACCESSKEY = '액세스키'
+> VENDOR_ID = '벤더ID'
+> EOF
+
 MacBook-Pro:~/kyungdongseo$ ls
 coupang_settings.py   
-
-MacBook-Pro:~/kyungdongseo$ cat coupang_settings.py
-SECRETKEY = '비밀키는 여러분의 것을 사용하세요'
-ACCESSKEY = '액세스키는 여러분의 것을 사용하세요'
-VENDOR_ID = '벤더ID'   
 
 MacBook-Pro:~/kyungdongseo$ python
 >>> from coupang.category import get_product_auto_category
