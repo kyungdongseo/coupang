@@ -69,7 +69,7 @@ coupang
 1. 위의 명령어를 이용하여 coupang 패키지 설치하기
 2. OPEN API Key 발급받기
     - 쿠팡의 [OPEN API Key 발급받기](https://developers.coupang.com/hc/ko/articles/360033980613)를 참조하여 secret key, access key, vendor id를 준비합니다. 
-3. **coupang_settings.py** 파일을 만들고 아래와 같은 형식으로 작성하십시오.
+3. **coupang_settings.py** 파일을 만들고 아래와 같은 형식으로 작성하십시오.    
 '''python
 SECRETKEY = '발급받은 secretkey'
 ACCESSKEY = '발급받은 accesskey'
