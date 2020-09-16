@@ -81,6 +81,7 @@ def search(keywords):
                 "encoding": "utf8",
                 },
         },
+        "LOG_ENABLED": False
     })
 
     process.crawl(CoupangSpider, searches=keywords)
