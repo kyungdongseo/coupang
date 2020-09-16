@@ -8,7 +8,7 @@ coupang
     - 카테고리 추천
         * get_product_auto_category(body)
     - 카테고리 목록조회
-        * 구현예정
+        * 구현미정
     - 카테고리 유효성 검사
         * get_category_validation(display_category_code)
 2. 물류센터 API(shipping)
@@ -104,6 +104,12 @@ coupang
     - 상품검색
         * search(keywords)
     
+함수의 매개변수 이름은 **쿠팡 오픈 API** 에서 사용되는 이름을 그대로 사용했으며    
+표현방식만 파이썬에 맞게끔 수정되었습니다.    
+예를 들면, VendorId는 vendor_id 로 수정하였으며    
+body는 Body Parameter를 의미하며 dict 자료형입니다.    
+또한 query는 Query String Parameter 를 의미하며 dict 자료형입니다.    
+     
 쿠팡 오픈 API에 관한 자세한 내용은 아래 주소에서 확인하실 수 있습니다.   
 [쿠팡 오픈 API 공식문서](https://developers.coupang.com/hc/ko)    
 
