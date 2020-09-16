@@ -130,6 +130,8 @@ VENDOR_ID = 'VendorId'
 ```
 4. 파이썬 쉘에서 테스트 해보기
 ```python
+MacBook-Pro:~/kyungdongseo$ pip install coupang
+
 MacBook-Pro:~/kyungdongseo$ cat >> coupang_settings.py << EOF 
 > SECRETKEY = '비밀키'
 > ACCESSKEY = '액세스키'
