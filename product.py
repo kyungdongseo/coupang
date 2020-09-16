@@ -8,7 +8,7 @@ from coupang.common import coupang
 
 
 @coupang
-def create_product(data):
+def create_product(body):
     '''상풍 등록
 
     [주의]
@@ -19,7 +19,7 @@ def create_product(data):
             'method': "POST",
             'path': "/v2/providers/seller_api/apis/api/v1/"+\
                     "marketplace/seller-products",
-            'body': json.dumps(data).encode('utf-8')
+            'body': json.dumps(body).encode('utf-8')
     }
 
 

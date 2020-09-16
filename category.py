@@ -8,7 +8,7 @@ from coupang.common import coupang
 
 
 @coupang
-def get_product_auto_category(data):
+def get_product_auto_category(body):
     '''카테고리 추천(머신러닝)
 
     [반환값 예시]
@@ -23,7 +23,7 @@ def get_product_auto_category(data):
     return {
             'method': "POST",
             'path': "/v2/providers/openapi/apis/api/v1/categorization/predict",
-            'body': json.dumps(data).encode('utf-8')
+            'body': json.dumps(body).encode('utf-8')
     }
 
 

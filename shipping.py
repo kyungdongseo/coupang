@@ -53,7 +53,7 @@ def outbound_shipping_data_template(when="create"):
 
 
 @coupang
-def register_outbound_shipping_center(data):
+def register_outbound_shipping_center(body):
     '''상품 출고지 생성
 
     (주의)
@@ -74,8 +74,8 @@ def register_outbound_shipping_center(data):
     return {
             'method': "POST",
             'path': "/v2/providers/openapi/apis/api/v4/vendors"+\
-                    f"/{data.get('vendorId')}/outboundShippingCenters",
-            'body': json.dumps(data).encode('utf-8')
+                    f"/{body.get('vendorId')}/outboundShippingCenters",
+            'body': json.dumps(body).encode('utf-8')
     }
 
 
@@ -99,7 +99,7 @@ def outbound_shipping_place(kwargs):
 
 
 @coupang
-def update_outbound_shipping_place(data):
+def update_outbound_shipping_place(body):
     '''출고지 수정
 
     outboundShippingPlaceCode 와 remoteInfoId 는
@@ -119,9 +119,9 @@ def update_outbound_shipping_place(data):
     return {
             'method': "PUT",
             'path': "/v2/providers/openapi/apis/api/v4/vendors"+\
-                    f"/{data.get('vendorId')}/outboundShippingCenters"+\
-                    f"/{data.get('outboundShippingPlaceCode')}",
-            'body': json.dumps(data).encode('utf-8') 
+                    f"/{body.get('vendorId')}/outboundShippingCenters"+\
+                    f"/{body.get('outboundShippingPlaceCode')}",
+            'body': json.dumps(body).encode('utf-8') 
     }
 
 

@@ -73,7 +73,7 @@ def get_ordersheet_history(vendor_id, shipment_box_id):
 
 
 @coupang
-def update_ordersheet_status(data):
+def update_ordersheet_status(body):
     '''주문상태를 '결제완료'에서 '상품준비중'으로 변경
 
     묶음배송번호를 이용하여 상태변경
@@ -83,8 +83,8 @@ def update_ordersheet_status(data):
     return {
             'method': "PUT",
             'path': "/v2/providers/openapi/apis/api/v4/vendors"+\
-                    f"/{data.get('vendorId')}/ordersheets/acknowledgement",
-            'body': json.dumps(data).encode('utf-8')
+                    f"/{body.get('vendorId')}/ordersheets/acknowledgement",
+            'body': json.dumps(body).encode('utf-8')
     }
 
 
