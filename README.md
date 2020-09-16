@@ -8,7 +8,9 @@ coupang
     - 카테고리 추천
         * get_product_auto_category(body)
     - 카테고리 목록조회
-        * 구현미정
+        * get_categories()
+    - 카테고리 조회
+        * get_category(path)
     - 카테고리 유효성 검사
         * get_category_validation(path)
 2. 물류센터 API(shipping)
@@ -19,30 +21,38 @@ coupang
     - 출고지 수정
         * update_outbound_shipping_place(body)
     - 반품지 생성
-        * 구현예정
+        * update_shipping_center_by_vendor(path, body)
     - 반품지 목록 조회
         * get_shipping_center_by_vendor(path, query)
     - 반품지 수정
-        * 구현예정
+        * update_shipping_center_by_return_center_code(path, body)
     - 반품지 단건 조회
         * get_shipping_by_center_code(query)
 3. 상품 API(product)
     - 상품 생성
         * create_product(body)
+    - 상품 승인 요청
+        * approve_product(path)
     - 상품 조회
         * get_product_by_product_id(path)
-    - 상품 수정
-        * 구현미정
+    - 상품 조회(승인불필요)
+        * get_partial_product_by_product_id(path)
+        * 해당 상품의 배송 및 반품지 등의 관련 정보를 조회
+    - 상품 수정(승인필요)
+        * update_product(body)
+    - 상품 수정(승인불필요)
+        * update_partial_product(body)
+        * 배송 및 반품지 관련 정보를 별도의 승인 절차 없이 빠르게 수정
     - 상품 삭제
         * delete_product(path)
-    - 상품 목록 페이지 조회
-        * 구현미정
+    - 상품 목록 페이징 조회
+        * get_products_by_query(query)
     - 상품 목록 구간 조회
-        * 구현미정
+        * get_products_by_time_frame(query)
     - 상품 상태변경이력 조회
-        * 구현미정
+        * get_product_status_history(query)
     - 상품 요약 정보 조회
-        * 구현미정
+        * get_product_by_external_sku(path)
     - 상품 아이템별 수량/가격/상태 조회
         * get_product_quantity_price_status(path)
     - 상품 아이템별 수량 변경

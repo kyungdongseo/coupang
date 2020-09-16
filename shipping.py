@@ -154,3 +154,28 @@ def get_shipping_by_center_code(query):
             'query': urllib.parse.urlencode(query)
     }
 
+
+@coupang
+def update_shipping_center_by_vendor(path, body):
+    '''반품지 생성'''
+
+    return {
+            'method': "POST",
+            'path': "/v2/providers/openapi/apis/api/v4/vendors"+\
+                    f"/{path.get('vendorId')}/returnShippingCenters",
+            'body': json.dumps(body).encode('utf-8')
+    }
+
+
+@coupang
+def update_shipping_center_by_return_center_code(path, body):
+    '''반품지 수정'''
+
+    return {
+            'method': "PUT",
+            'path': "/v2/providers/openapi/apis/api/v4/vendors"+\
+                    f"/{path.get('vendorId')}/returnShippingCenters"+\
+                    f"/{path.get('returnCenterCode')}",
+            'body': json.dumps(body).encode('utf-8')
+    }
+

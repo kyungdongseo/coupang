@@ -44,6 +44,32 @@ def get_category_meta(path):
 
 
 @coupang
+def get_categories():
+    '''카테고리 목록조회
+
+    노출 카테고리 목록 전체를 조회한다.
+    '''
+
+    return {
+            'method': "GET",
+            'path': "/v2/providers/seller_api/apis/api/v1/marketplace"+\
+                    "/meta/display-categories"
+    }
+
+
+@coupang
+def get_category(path):
+    '''카테고리 조회'''
+
+    return {
+            'method': "GET",
+            'path': "/v2/providers/seller_api/apis/api/v1/marketplace"+\
+                    f"/meta/display-categories"+\
+                    f"/{path.get('displayCategoryCode')}"
+    }
+
+
+@coupang
 def get_category_validation(path):
     '''카테고리 유효성 검사
 
