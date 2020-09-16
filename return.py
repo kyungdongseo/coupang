@@ -9,7 +9,7 @@ from coupang.common import coupang
 
 
 @coupang
-def get_return_request_by_query(vendor_id, query):
+def get_return_request_by_query(path, query):
     '''반품(취소)요청 목록 조회
 
     자세한 설명은 아래주소 참조
@@ -19,13 +19,13 @@ def get_return_request_by_query(vendor_id, query):
     return {
             'method': "GET",
             'path': "/v2/providers/openapi/apis/api/v4/vendors"+\
-                    f"/{vendor_id}/returnRequests",
+                    f"/{path.get('vendorId')}/returnRequests",
             'query': urllib.parse.urlencode(query)
     }
 
 
 @coupang
-def get_return_request_by_receipt(vendor_id, receipt_id):
+def get_return_request_by_receipt(path):
     '''반품 조회(단건)
 
     반품(취소) 접수번호(receipt_id)를 이용한 조회
@@ -34,7 +34,8 @@ def get_return_request_by_receipt(vendor_id, receipt_id):
     return {
             'method': "GET",
             'path': "/v2/providers/openapi/apis/api/v4/vendors"+\
-                    f"/{vendor_id}/returnRequests/{receipt_id}"
+                    f"/{path.get('vendorId')}/returnRequests"+\
+                    f"/{path.get('receiptId')}"
     }
 
 
@@ -90,7 +91,7 @@ def approve_return_request_by_receipt(body):
 
 
 @coupang
-def get_return_withdraw_request(vendor_id, query):
+def get_return_withdraw_request(path, query):
     '''반품철회 이력 조회(기간별)
 
     최대 7일간 조회가능
@@ -100,25 +101,25 @@ def get_return_withdraw_request(vendor_id, query):
     return {
             'method': "GET",
             'path': "/v2/providers/openapi/apis/api/v4/vendors"+\
-                    f"/{vendor_id}/returnWithdrawRequests",
+                    f"/{path.get('vendorId')}/returnWithdrawRequests",
             'query': urllib.parse.urlencode(query)
     }
 
 
 @coupang
-def get_return_withdraw_by_cancel_ids(vendor_id, body):
+def get_return_withdraw_by_cancel_ids(path, body):
     '''반품철회 이력 조회(반품(취소) 접수번호 사용)'''
 
     return {
             'method': "POST",
             'path': "/v2/providers/openapi/apis/api/v4/vendors"+\
-                    f"/{vendor_id}/returnWithdrawList",
+                    f"/{path.get('vendorId')}/returnWithdrawList",
             'body': json.dumps(body).encode('utf-8')
     }
 
 
 @coupang
-def create_return_exchange_invoice(vendor_id, body):
+def create_return_exchange_invoice(path, body):
     '''회수 송장 등록
 
     반품자동연동 서비스를 사용하지 않고
@@ -136,7 +137,7 @@ def create_return_exchange_invoice(vendor_id, body):
     return {
             'method': "POST",
             'path': "/v2/providers/openapi/apis/api/v4/vendors"+\
-                    f"/{vendor_id}/return-exchange-invoices/manual",
+                    f"/{path.get('vendorId')}/return-exchange-invoices/manual",
             'body': json.dumps(body).encode('utf-8')
     }
 

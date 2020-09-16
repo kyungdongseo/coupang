@@ -9,7 +9,7 @@ from coupang.common import coupang
 
 
 @coupang
-def get_ordersheet(vendor_id, query):
+def get_ordersheet(path, query):
     '''발주서 목록 조회
 
     (일단위 조회)
@@ -25,13 +25,13 @@ def get_ordersheet(vendor_id, query):
     return {
             'method': "GET",
             'path': "/v2/providers/openapi/apis/api/v4/vendors"+\
-                    f"/{vendor_id}/ordersheets",
+                    f"/{path.get('vendorId')}/ordersheets",
             'query': urllib.parse.urlencode(query)
     }
 
 
 @coupang
-def get_ordersheet_by_shipmentboxid(vendor_id, shipment_box_id):
+def get_ordersheet_by_shipmentboxid(path):
     '''발주서 조회
 
     shipment_box_id(배송번호)를 이용하여 조회
@@ -40,12 +40,13 @@ def get_ordersheet_by_shipmentboxid(vendor_id, shipment_box_id):
     return {
             'method': "GET",
             'path': "/v2/providers/openapi/apis/api/v4/vendors"+\
-                    f"/{vendor_id}/ordersheets/{shipment_box_id}"
+                    f"/{path.get('vendorId')}/ordersheets"+\
+                    f"/{path.get('shipmentBoxId')}"
     }
 
 
 @coupang
-def get_ordersheet_by_orderid(vendor_id, order_id):
+def get_ordersheet_by_orderid(path):
     '''발주서 조회
 
     order_id(주문번호)를 이용하여 발주서 조회
@@ -54,12 +55,13 @@ def get_ordersheet_by_orderid(vendor_id, order_id):
     return {
             'method': "GET",
             'path': "/v2/providers/openapi/apis/api/v4/vendors"+\
-                    f"/{vendor_id}/{order_id}/ordersheets"
+                    f"/{path.get('vendorId')}"+\
+                    f"/{path.get('orderId')}/ordersheets"
     }
 
 
 @coupang
-def get_ordersheet_history(vendor_id, shipment_box_id):
+def get_ordersheet_history(path):
     '''배송상태 변경 히스토리 조회
 
     특정 주문에 대한 배송상태 히스토리 조회
@@ -68,7 +70,8 @@ def get_ordersheet_history(vendor_id, shipment_box_id):
     return {
             'method': "GET",
             'path': "/v2/providers/openapi/apis/api/v4/vendors"+\
-                    f"/{vendor_id}/ordersheets/{shipment_box_id}/history"
+                    f"/{path.get('vendorId')}/ordersheets"+\
+                    f"/{path.get('shipmentBoxId')}/history"
     }
 
 
@@ -197,7 +200,7 @@ def cancel_order_processing(body):
 
 
 @coupang
-def update_invoice_delivery_by_invoice_no(vendor_id, body):
+def update_invoice_delivery_by_invoice_no(path, body):
     '''장기미배송 배송완료 처리
 
     송장 업로드 후 1달이 경과하였으나,
@@ -210,7 +213,7 @@ def update_invoice_delivery_by_invoice_no(vendor_id, body):
     return {
             'method': "POST",
             'path': "/v2/providers/openapi/apis/api/v4/vendors"+\
-                    f"/{vendor_id}/completeLongTermUndelivery",
+                    f"/{path.get('vendorId')}/completeLongTermUndelivery",
             'body': json.dumps(body).encode('utf-8')
     }
 

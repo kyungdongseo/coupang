@@ -6,7 +6,6 @@ import urllib.request
 import ssl
 import json
 from functools import wraps
-from inspect import signature
 
 
 try:
@@ -19,31 +18,12 @@ except ModuleNotFoundError:
     print("SECRETKEY = 'Enter your secret key here'")
     print("ACCESSKEY = 'Enter your access key here'")
     print("VENDOR_ID = 'Enter your vendor id here(Axxxxxxxx)'")
-    print("USER_ID = 'Enter your user id here(Coupang Wing login ID)'")
     quit()
 
 
 ##############################################################################
 # 공통 함수                                                                  # 
 ##############################################################################
-
-# decorator
-def vendor_id(f):
-    @wraps(f)
-    def deco(*args, **kwargs):
-        key = 'vendor_id'
-        sig = signature(f, follow_wrapped=True)
-        keys = sig.parameters.keys()
-
-        if key in keys:
-            if len(args) < len(keys):
-                position = list(keys).index(key)
-                args_list = list(args)
-                args_list.insert(position, coupang_settings.VENDOR_ID)
-                args = tuple(args_list)
-
-        return f(*args, **kwargs)
-    return deco
 
 
 # decorator

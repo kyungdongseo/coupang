@@ -9,7 +9,7 @@ from coupang.common import coupang
 
 
 @coupang
-def get_exchange_request(vendor_id, query):
+def get_exchange_request(path, query):
     '''교환 요청 목록 조회
 
     최대 7일 이내의 교환 내역을 확인할 수 있음
@@ -18,7 +18,7 @@ def get_exchange_request(vendor_id, query):
     return {
             'method': "GET",
             'path': "/v2/providers/openapi/apis/api/v4/vendors"+\
-                    f"/{vendor_id}/exchangeRequests",
+                    f"/{path.get('vendorId')}/exchangeRequests",
             'query': urllib.parse.urlencode(query)
     }
 

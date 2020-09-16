@@ -80,7 +80,7 @@ def register_outbound_shipping_center(body):
 
 
 @coupang
-def outbound_shipping_place(kwargs):
+def outbound_shipping_place(query):
     '''출고지 조회
 
     출고지 목록조회: pageNum, pageSize
@@ -94,7 +94,7 @@ def outbound_shipping_place(kwargs):
             'method': "GET",
             'path': "/v2/providers/marketplace_openapi/apis/api/v1/vendor"+\
                     "/shipping-place/outbound",
-            'query': urllib.parse.urlencode(kwargs)
+            'query': urllib.parse.urlencode(query)
     }
 
 
@@ -126,21 +126,20 @@ def update_outbound_shipping_place(body):
 
 
 @coupang
-def get_shipping_center_by_vendor(vendor_id, page_num=1, page_size=50):
+def get_shipping_center_by_vendor(path, query):
     '''반품지 목록 조회'''
 
-    query = {'pageNum':page_num, 'pageSize': page_size}
     return {
             'method': "GET",
             'path': "/v2/providers/openapi/apis/api/v4/vendors"+\
-                    f"/{vendor_id}/returnShippingCenters",
+                    f"/{path.get('vendorId')}/returnShippingCenters",
             'query': urllib.parse.urlencode(query)
     }
 
 
 
 @coupang
-def get_shipping_by_center_code(return_center_codes):
+def get_shipping_by_center_code(query):
     '''반품지 조회
 
     return_center_code(반품지코드)를 콤마(,)로 연결하여
@@ -148,7 +147,6 @@ def get_shipping_by_center_code(return_center_codes):
     (예) 1000554021,1000554704
     '''
 
-    query = {'returnCenterCodes': return_center_codes}
     return {
             'method': "GET",
             'path': "/v2/providers/greatwall_api/apis/api/v2"+\

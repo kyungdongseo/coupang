@@ -28,7 +28,7 @@ def get_product_auto_category(body):
 
 
 @coupang
-def get_category_meta(display_category_code):
+def get_category_meta(path):
     '''카테고리의 고시정보,옵션,구비서류,인증정보 목록을 조회
 
     자세한 정보는 아래 주소 참조
@@ -38,13 +38,13 @@ def get_category_meta(display_category_code):
     return {
             'method': "GET",
             'path': "/v2/providers/seller_api/apis/api/v1/marketplace"+\
-                    "/meta/category-related-metas"+\
-                    f"/display-category-codes/{display_category_code}"
+                    "/meta/category-related-metas/display-category-codes"+\
+                    f"/{path.get('displayCategoryCode')}"
     }
 
 
 @coupang
-def get_category_validation(display_category_code):
+def get_category_validation(path):
     '''카테고리 유효성 검사
 
     카테고리 리뉴얼(연 2회)로 인해
@@ -59,6 +59,7 @@ def get_category_validation(display_category_code):
     return {
             'method': "GET",
             'path': "/v2/providers/seller_api/apis/api/v1/marketplace"+\
-                    f"/meta/display-categories/{display_category_code}/status"
+                    "/meta/display-categories"+\
+                    f"/{path.get('displayCategoryCode')}/status"
     }
 

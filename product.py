@@ -24,7 +24,7 @@ def create_product(body):
 
 
 @coupang
-def get_product_by_product_id(seller_product_id):
+def get_product_by_product_id(path):
     '''등록상품ID로(seller_product_id) 등록된 상품의 정보를 조회
 
     옵션ID(vendor_item_id)를 얻을 수 있으며,
@@ -41,12 +41,12 @@ def get_product_by_product_id(seller_product_id):
     return {
             'method': "GET",
             'path': "/v2/providers/seller_api/apis/api/v1/marketplace"+\
-                    f"/seller-products/{seller_product_id}"
+                    f"/seller-products/{path.get('sellerProductId')}"
     }
 
 
 @coupang
-def delete_product(seller_product_id):
+def delete_product(path):
     '''등록된 상품을 삭제한다
 
     상품이 승인대기중 상태가 아니며,
@@ -63,7 +63,7 @@ def delete_product(seller_product_id):
     return {
             'method': "DELETE",
             'path': "/v2/providers/seller_api/apis/api/v1/marketplace"+\
-                    f"/seller-products/{seller_product_id}"
+                    f"/seller-products/{path.get('sellerProductId')}"
     }
 
 
@@ -73,7 +73,7 @@ def delete_product(seller_product_id):
 
 
 @coupang
-def stop_product_sales_by_item(vendor_item_id):
+def stop_product_sales_by_item(path):
     '''아이템별 판매 중지(or 품절)
 
     이미 판매중지 상태인 아이템을 상대로 호출해도 SUCCESS가 반환됨
@@ -85,12 +85,12 @@ def stop_product_sales_by_item(vendor_item_id):
     return {
             'method': "PUT",
             'path': "/v2/providers/seller_api/apis/api/v1/marketplace"+\
-                    f"/vendor-items/{vendor_item_id}/sales/stop"
+                    f"/vendor-items/{path.get('vendorItemId')}/sales/stop"
     }
 
 
 @coupang
-def resume_product_sales_by_item(vendor_item_id):
+def resume_product_sales_by_item(path):
     '''아이템별 판매 재개
 
     [반환값 예시]
@@ -100,12 +100,12 @@ def resume_product_sales_by_item(vendor_item_id):
     return {
             'method': "PUT",
             'path': "/v2/providers/seller_api/apis/api/v1/marketplace"+\
-                    f"/vendor-items/{vendor_item_id}/sales/resume"
+                    f"/vendor-items/{path.get('vendorItemId')}/sales/resume"
     }
 
 
 @coupang
-def update_product_price_by_item(vendor_item_id, price):
+def update_product_price_by_item(path):
     ''' 아이템별 가격 변경
     
     [반환값 예시]
@@ -115,13 +115,14 @@ def update_product_price_by_item(vendor_item_id, price):
     return {
             'method': "PUT",
             'path': "/v2/providers/seller_api/apis/api/v1/marketplace"+\
-                    f"/vendor-items/{vendor_item_id}/prices/{price}",
+                    f"/vendor-items/{path.get('vendorItemId')}/prices"+\
+                    f"/{path.get('price')}",
             'query': "forceSalePriceUpdate=true"
     }
 
 
 @coupang
-def update_product_quantity_by_item(vendor_item_id, quantity):
+def update_product_quantity_by_item(path):
     '''아이템별 재고 수량 변경
 
     [반환값 예시]
@@ -131,12 +132,13 @@ def update_product_quantity_by_item(vendor_item_id, quantity):
     return {
             'method': "PUT",
             'path': "/v2/providers/seller_api/apis/api/v1/marketplace"+\
-                    f"/vendor-items/{vendor_item_id}/quantities/{quantity}"
+                    f"/vendor-items/{path.get('vendorItemId')}"+\
+                    f"/quantities/{path.get('quantity')}"
     }
 
 
 @coupang
-def get_product_quantity_price_status(vendor_item_id):
+def get_product_quantity_price_status(path):
     '''아이템별 재고, 가격, 판매상태 조회
 
     [반환값 예시]
@@ -151,6 +153,6 @@ def get_product_quantity_price_status(vendor_item_id):
     return {
             'method': "GET",
             'path': "/v2/providers/seller_api/apis/api/v1/marketplace"+\
-                    f"/vendor-items/{vendor_item_id}/inventories"
+                    f"/vendor-items/{path.get('vendorItemId')}/inventories"
     }
 
