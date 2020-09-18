@@ -1,7 +1,7 @@
 coupang
 -------
 **coupang**은 쿠팡 오픈 API의 파이썬 래퍼(Python wrapper) 입니다.   
-현재 7개의 주제에 대해 구현되어 있으며, 그 내용은 아래와 같습니다.      
+현재 9개의 주제에 대해 구현되어 있으며, 그 내용은 아래와 같습니다.      
 1. 카테고리 API(category)
     - 카테고리 메타정보 조회
         * get_category_meta(path)
@@ -110,7 +110,23 @@ coupang
         * reject_exchange_request(body)
     - 교환상품 송장 업로드 처리
         * update_invoice_exchange_request(body)
-7. 검색(search)
+7. CS API(cs)
+    - 상품별 고객문의 조회
+        * get_customer_service_request(query)
+    - 상품별 고객문의 답변
+        * update_customer_service_request(path, body)
+    - 쿠팡 콜센터 문의 조회
+        * get_inquiry_by_query(query)
+    - 쿠팡 콜센터 문의 답변
+        * update_inquiry(body)
+    - 쿠팡 콜센터 문의 확인
+        * confirm_inquiry(path, body)
+8. 정산 API(settlement)
+    - 매출내역 조회
+        * get_revenue_history(query)
+    - 지급내역 조회
+        * settlement_histories(query)
+9. 검색(search)
     - 상품검색
         * search(keywords)
      
