@@ -147,7 +147,7 @@ query는 Query String Parameter 를 의미하며 dict 자료형입니다.
 -----
 1. 위의 명령어를 이용하여 coupang 패키지 설치하기
 2. OPEN API Key 발급받기
-    - 쿠팡의 [OPEN API Key 발급받기](https://developers.coupang.com/hc/ko/articles/360033980613)를 참조하여 SecretKey, AccessKey, VendorId를 준비합니다. 
+    - 쿠팡의 [OPEN API Key 발급받기](https://developers.coupang.com/hc/ko/articles/360033980613)를 참조하여 SecretKey, AccessKey를 준비합니다. 
 3. **coupang.ini** 파일을 만들고 아래의 정보를 작성하십시오.    
 ```python
 [DEFAULT]
