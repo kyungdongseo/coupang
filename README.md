@@ -165,7 +165,7 @@ MacBook-Pro:~/kyungdongseo$ cat >> coupang.ini << EOF
 > EOF
 
 MacBook-Pro:~/kyungdongseo$ ls
-coupang_settings.py   
+coupang.ini    
 
 MacBook-Pro:~/kyungdongseo$ python
 >>> from coupang.category import get_product_auto_category
