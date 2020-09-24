@@ -1,5 +1,6 @@
 import os
 import time
+import configparser
 import hmac, hashlib
 import urllib.parse
 import urllib.request
@@ -8,17 +9,15 @@ import json
 from functools import wraps
 
 
-try:
-    import coupang_settings
-except ModuleNotFoundError:
-    print('api 관한 정보가 필요합니다')
-    print('coupang_settings.py 파일을 생성후')
-    print('경계선 아래의 내용을 입력하십시오')
-    print('='*30+'경계선'+'='*30)
-    print("SECRETKEY = 'Enter your secret key here'")
-    print("ACCESSKEY = 'Enter your access key here'")
-    print("VENDOR_ID = 'Enter your vendor id here(Axxxxxxxx)'")
-    quit()
+config = configparser.ConfigParser()
+config.read('coupang.ini')
+SECRETKEY = config['DEFAULT'].get('SECRETKEY')
+ACCESSKEY = config['DEFAULT'].get('ACCESSKEY')
+
+if SECRETKEY is None:
+    raise Exception('SECRETKEY를 설정해주십시오.')
+if ACCESSKEY is None:
+    raise Exception('ACCESSKEY를 설정해주십시오.')
 
 
 ##############################################################################
@@ -30,8 +29,8 @@ except ModuleNotFoundError:
 def coupang(f):
     @wraps(f)
     def decorated(*args, **kwargs):
-        secretkey = coupang_settings.SECRETKEY
-        accesskey = coupang_settings.ACCESSKEY
+        secretkey = SECRETKEY
+        accesskey = ACCESSKEY
 
         data = f(*args, **kwargs)
         if data.get('method') == 'PUT':
