@@ -150,6 +150,7 @@ query는 Query String Parameter 를 의미하며 dict 자료형입니다.
     - 쿠팡의 [OPEN API Key 발급받기](https://developers.coupang.com/hc/ko/articles/360033980613)를 참조하여 SecretKey, AccessKey, VendorId를 준비합니다. 
 3. **coupang.ini** 파일을 만들고 아래의 정보를 작성하십시오.    
 ```python
+[DEFAULT]
 SECRETKEY = '발급받은 SecretKey'
 ACCESSKEY = '발급받은 AccessKey'
 ```
@@ -158,6 +159,7 @@ ACCESSKEY = '발급받은 AccessKey'
 MacBook-Pro:~/kyungdongseo$ pip install coupang
 
 MacBook-Pro:~/kyungdongseo$ cat >> coupang.ini << EOF 
+> [DEFAULT]
 > SECRETKEY = '비밀키'
 > ACCESSKEY = '액세스키'
 > EOF
