@@ -151,8 +151,8 @@ query는 Query String Parameter 를 의미하며 dict 자료형입니다.
 3. **coupang.ini** 파일을 만들고 아래의 정보를 작성하십시오.    
 ```python
 [DEFAULT]
-SECRETKEY = '발급받은 SecretKey'
-ACCESSKEY = '발급받은 AccessKey'
+SECRETKEY = 발급받은SecretKey
+ACCESSKEY = 발급받은AccessKey
 ```
 4. 파이썬 쉘에서 테스트 해보기
 ```python
@@ -160,8 +160,8 @@ MacBook-Pro:~/kyungdongseo$ pip install coupang
 
 MacBook-Pro:~/kyungdongseo$ cat >> coupang.ini << EOF 
 > [DEFAULT]
-> SECRETKEY = '비밀키'
-> ACCESSKEY = '액세스키'
+> SECRETKEY = 비밀키
+> ACCESSKEY = 액세스키
 > EOF
 
 MacBook-Pro:~/kyungdongseo$ ls

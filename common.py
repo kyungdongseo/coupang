@@ -1,5 +1,6 @@
 import os
 import time
+import re
 import configparser
 import hmac, hashlib
 import urllib.parse
@@ -18,6 +19,9 @@ if SECRETKEY is None:
     raise Exception('SECRETKEY를 설정해주십시오.')
 if ACCESSKEY is None:
     raise Exception('ACCESSKEY를 설정해주십시오.')
+
+SECRETKEY = re.sub('^\'|^\"|\'$|\"$', '', SECRETKEY)
+ACCESSKEY = re.sub('^\'|^\"|\'$|\"$', '', ACCESSKEY)
 
 
 ##############################################################################
