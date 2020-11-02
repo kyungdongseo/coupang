@@ -35,6 +35,7 @@ def coupang(f):
     def decorated(*args, **kwargs):
         secretkey = SECRETKEY
         accesskey = ACCESSKEY
+        retry = True
 
         data = f(*args, **kwargs)
         if data.get('method') == 'PUT':
@@ -49,7 +50,19 @@ def coupang(f):
                 url = "https://api-gateway.coupang.com"+\
                         data.get('path')+\
                         "?%s" % data.get('query')
-                response = request(data.get('method'), url, authorization)
+                try:
+                    response = request(data.get('method'), url, authorization)
+                except:
+                    if retry:
+                        retry = False
+                        time.sleep(1)
+                        try:
+                            response = request(data.get('method'), url, authorization)
+                        except:
+                            pass
+                    else:
+                        pass
+
             elif 'body' in data:
                 authorization = auth(
                         secretkey,
@@ -58,12 +71,29 @@ def coupang(f):
                         data.get('path')
                 )
                 url = "https://api-gateway.coupang.com"+data.get('path')
-                response = request(
-                        data.get('method'),
-                        url,
-                        authorization,
-                        data.get('body')
-                )
+                try:
+                    response = request(
+                            data.get('method'),
+                            url,
+                            authorization,
+                            data.get('body')
+                    )
+                except:
+                    if retry:
+                        retry = False
+                        time.sleep(1)
+                        try:
+                            response = request(
+                                    data.get('method'),
+                                    url,
+                                    authorization,
+                                    data.get('body')
+                            )
+                        except:
+                            pass
+                    else:
+                        pass
+
             else:
                 authorization = auth(
                         secretkey,
@@ -72,7 +102,18 @@ def coupang(f):
                         data.get('path')
                 )
                 url = "https://api-gateway.coupang.com"+data.get('path')
-                response = request(data.get('method'), url, authorization)
+                try:
+                    response = request(data.get('method'), url, authorization)
+                except:
+                    if retry:
+                        retry = False
+                        time.sleep(1)
+                        try:
+                            response = request(data.get('method'), url, authorization)
+                        except:
+                            pass
+                    else:
+                        pass
 
         elif data.get('method') == 'GET':
             if 'query' in data:
@@ -94,7 +135,18 @@ def coupang(f):
                         data.get('path')
                 )
                 url = "https://api-gateway.coupang.com"+data.get('path')
-            response = request(data.get('method'), url, authorization)
+            try:
+                response = request(data.get('method'), url, authorization)
+            except:
+                if retry:
+                    retry = False
+                    time.sleep(1)
+                    try:
+                        response = request(data.get('method'), url, authorization)
+                    except:
+                        pass
+                else:
+                    pass
 
         elif data.get('method') == 'DELETE':
             authorization = auth(
@@ -104,7 +156,18 @@ def coupang(f):
                     data.get('path')
             )
             url = "https://api-gateway.coupang.com"+data.get('path')
-            response = request(data.get('method'), url, authorization)
+            try:
+                response = request(data.get('method'), url, authorization)
+            except:
+                if retry:
+                    retry = False
+                    time.sleep(1)
+                    try:
+                        response = request(data.get('method'), url, authorization)
+                    except:
+                        pass
+                else:
+                    pass
 
         elif data.get('method') == 'POST':
             authorization = auth(
@@ -114,12 +177,29 @@ def coupang(f):
                     data.get('path')
             )
             url = "https://api-gateway.coupang.com"+data.get('path')
-            response = request(
-                    data.get('method'),
-                    url,
-                    authorization,
-                    data.get('body')
-            )
+            try:
+                response = request(
+                        data.get('method'),
+                        url,
+                        authorization,
+                        data.get('body')
+                )
+            except:
+                if retry:
+                    retry = False
+                    time.sleep(1)
+                    try:
+                        response = request(
+                                data.get('method'),
+                                url,
+                                authorization,
+                                data.get('body')
+                        )
+                    except:
+                        pass
+                else:
+                    pass
+
         return response
     return decorated
 
@@ -170,9 +250,11 @@ def request(method, url, authorization, body=None):
     except urllib.request.HTTPError as e:
         print(e.code)
         print(e.reason)
+        raise e
     except urllib.request.URLError as e:
         print(e.errno)
         print(e.reason)
+        raise e
     else:
         # 200
         decoded_resp = resp.read().decode(resp.headers.get_content_charset())
