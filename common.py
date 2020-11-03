@@ -38,6 +38,7 @@ def coupang(f):
         retry = True
 
         data = f(*args, **kwargs)
+        response = None
         if data.get('method') == 'PUT':
             if 'query' in data:
                 authorization = auth(
