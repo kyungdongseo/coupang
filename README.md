@@ -86,7 +86,7 @@ coupang
         * cancel_order_processing(body)
     - 장기 미배송 완료 처리
         * update_invoice_delivery_by_invoice_no(path, body)
-5. 반품 API(return)
+5. 반품 API(returns)
     - 반품/취소 요청 목록 조회
         * get_return_request_by_query(path, query)
     - 반품요청 단건 조회
