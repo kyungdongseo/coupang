@@ -186,6 +186,35 @@ def delete_product(path):
     }
 
 
+@coupang
+def get_inflow_status():
+    ''' 상품 등록 현황 조회
+
+    판매자가 등록할 수 있는 상품수와 현재 등록되어 있는 상품수를 조회
+
+    [반환값 예시]
+    restricted: false(상품 등록 가능), true(상품 등록 불가능)
+    registeredCount: 등록된 상품수
+    permittedCount: 등록 가능한 최대 상품수, null일 경우 무제한 등록 가능
+
+    {
+        "code": "SUCCESS",
+        "message": "",
+        "data": {
+          "vendorId": "A00123456",
+          "restricted": false,
+          "registeredCount": 8125,
+          "permittedCount": 10000
+        }
+    }
+    '''
+
+    return {
+        'method': 'GET',
+        'path': '/v2/providers/seller_api/apis/api/v1/marketplace/seller-products/inflow-status'
+    }
+
+
 ##############################################################################
 # 아이템 관련 함수                                                           # 
 ##############################################################################

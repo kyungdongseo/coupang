@@ -45,6 +45,8 @@ coupang
         * 배송 및 반품지 관련 정보를 별도의 승인 절차 없이 빠르게 수정
     - 상품 삭제
         * delete_product(path)
+    - 상품 등록 현황 조회
+        * get_inflow_status()
     - 상품 목록 페이징 조회
         * get_products_by_query(query)
     - 상품 목록 구간 조회
