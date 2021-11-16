@@ -155,6 +155,7 @@ query는 Query String Parameter 를 의미하며 dict 자료형입니다.
 [DEFAULT]
 SECRETKEY = 발급받은SecretKey
 ACCESSKEY = 발급받은AccessKey
+VENDOR_ID = 업체코드
 ```
 4. 파이썬 쉘에서 테스트 해보기
 ```python
@@ -164,6 +165,7 @@ MacBook-Pro:~/kyungdongseo$ cat >> coupang.ini << EOF
 > [DEFAULT]
 > SECRETKEY = 비밀키
 > ACCESSKEY = 액세스키
+> VENDOR_ID = 업체코드
 > EOF
 
 MacBook-Pro:~/kyungdongseo$ ls
